@@ -1,6 +1,5 @@
 
 require('bootstrap');
 
-import XkcdLoader from "./xkcdLoader.js";
-
-const xkcd = new XkcdLoader();
+import XKCDWidget from "./modules/xkcdLoader.js";
+new XKCDWidget();
