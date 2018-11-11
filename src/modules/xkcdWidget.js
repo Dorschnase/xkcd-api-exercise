@@ -10,9 +10,9 @@ class XKCDWidget {
     }
 
     init(){
-        apiUrl = "http://xkcd.com/:id/info.0.json"
+        /*apiUrl = "http://xkcd.com/:id/info.0.json"*/
 
-        this.registerEvents;
+        this.registerEvents();
     }
 
     registerEvents(){
@@ -21,10 +21,16 @@ class XKCDWidget {
 
         formId.addEventListener("submit", e =>{
             e.preventDefault;
+            console.log("clicked");
             
-            let id = inputID.value.trim();
-            
+            let id = Number(inputID.value.trim());
+            this.getComicByID(id)
         })
+    }
+
+    loadComicById(input){
+        let buildUrl = "http://xkcd.com/:id/info.0.json"
+
     }
 
   }

@@ -1,5 +1,2 @@
-
-require('bootstrap');
-
-import XKCDWidget from "./modules/xkcdLoader.js";
-new XKCDWidget();
+import XKCDWidget from "./modules/xkcdWidget";
+const widget = new XKCDWidget();
