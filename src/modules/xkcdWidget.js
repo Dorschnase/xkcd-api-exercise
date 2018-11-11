@@ -1,3 +1,5 @@
+import { resolve } from "path";
+
 class XKCDWidget {
     constructor(options = {}) {
       this.options = {
@@ -23,20 +25,27 @@ class XKCDWidget {
             e.preventDefault();
             
             let id = Number(this.inputID.value.trim());
-            let buildUrl = `${this.apiUrl}${this.apiEndpoint.replace(":id", id)}`;
-            
-            const xkcdComic = fetch(buildUrl);
+            this.loadComic(id);
 
-            xkcdComic
-            .then((response) => response.json())
-            .then((data) => { console.log() })
-            .catch((error) =>{
-                console.log(error)
-            });
+
         });
     };
 
-    console.log(xkcdComic);
+    loadComic(id){
+        let buildUrl = `${this.apiUrl}${this.apiEndpoint.replace(":id", id)}`;
+        const xkcdComic = fetch(buildUrl);
+
+        xkcdComic
+        .then((response) => response.json())
+        .then((data) => { 
+            resolve(data) 
+        })
+        .catch((error) => {
+            reject(error)
+        })
+    }
+
+
 
 
   }
