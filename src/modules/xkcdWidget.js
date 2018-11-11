@@ -5,33 +5,39 @@ class XKCDWidget {
       };
 
       Object.assign(this.options, options);
-
     this.init();
+
     }
 
     init(){
-        /*apiUrl = "http://xkcd.com/:id/info.0.json"*/
-
+        this.apiUrl = "https://cors-anywhere.dominik-hanke.de/http://xkcd.com";
+        this.apiEndpoint = "/:id/info.0.json";
+        this.formId = document.querySelector("#search-by-id");
+        this.inputID = document.querySelector("#input-id");
         this.registerEvents();
     }
 
     registerEvents(){
-        const formId = document.querySelector("#search-by-id");
-        const inputID = document.querySelector("#input-id");
 
-        formId.addEventListener("submit", e =>{
-            e.preventDefault;
-            console.log("clicked");
+        this.formId.addEventListener("submit", e =>{
+            e.preventDefault();
             
-            let id = Number(inputID.value.trim());
-            this.getComicByID(id)
-        })
-    }
+            let id = Number(this.inputID.value.trim());
+            let buildUrl = `${this.apiUrl}${this.apiEndpoint.replace(":id", id)}`;
+            
+            const xkcdComic = fetch(buildUrl);
 
-    loadComicById(input){
-        let buildUrl = "http://xkcd.com/:id/info.0.json"
+            xkcdComic
+            .then((response) => response.json())
+            .then((data) => { console.log() })
+            .catch((error) =>{
+                console.log(error)
+            });
+        });
+    };
 
-    }
+    console.log(xkcdComic);
+
 
   }
 
